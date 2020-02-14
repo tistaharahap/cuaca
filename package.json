@@ -1,0 +1,18 @@
+{
+  "name": "cuaca",
+  "version": "0.1.0",
+  "description": "Perkiraan cuaca menggunakan data BMKG yang fokus terhadap kemudahan penggunaan",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cuaca",
+    "bmkg",
+    "weather",
+    "indonesia",
+    "forecast"
+  ],
+  "author": "Batista Harahap",
+  "license": "MIT"
+}

@@ -1,0 +1,17 @@
+{
+    "source": "./src",
+    "destination": "./docs",
+    "plugins": [{
+      "name": "esdoc-standard-plugin",
+      "option": {
+        "lint": {"enable": false},
+        "coverage": {"enable": false},
+        "brand": {
+          "title": "Cloudflare DDNS",
+          "description": "Use Cloudflare's DNS API as your DDNS",
+          "repository": "https://github.com/tistaharahap/cloudflare-ddns",
+          "author": "https://twitter.com/tista"
+        }
+      }
+    }]
+  }
