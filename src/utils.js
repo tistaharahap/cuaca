@@ -29,14 +29,14 @@ const bmkgDatetimeToISODatetime = bmkgDatetime => {
     8
   )}T${bmkgDatetime.slice(8, 10)}-${bmkgDatetime.slice(10, 12)}-00`
   return DateTime.fromISO(isodatetime, {
-    zone: 'Asia/Jakarta'
+    zone: 'UTC'
   }).toString()
 }
 
 const bmkgDateToISODate = bmkgDate => {
   const isodate = `${bmkgDate.slice(0, 4)}-${bmkgDate.slice(4, 6)}-${bmkgDate.slice(6, 8)}T00:00:00`
   return DateTime.fromISO(isodate, {
-    zone: 'Asia/Jakarta'
+    zone: 'UTC'
   }).toString()
 }
 
