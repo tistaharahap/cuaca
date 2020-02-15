@@ -1,4 +1,7 @@
 export default {
   appPort: process.env.PORT || 3000,
-  appHost: process.env.HOST || '0.0.0.0'
+  appHost: process.env.HOST || '0.0.0.0',
+  mongoDbConnString:
+    process.env.MONGO_DB_CONN_STRING ||
+    'mongodb+srv://bango:uNrSeRwEbU3Esyk@cuaca-public-wdl9a.gcp.mongodb.net/test?retryWrites=true&w=majority'
 }

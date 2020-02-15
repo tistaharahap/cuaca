@@ -63,7 +63,7 @@ const seeder = Rx.Observable.of(weatherSource).switchMap(it => {
                   })
 
                   // This h key is so lazy
-                  timerange.hour_of_day = timerange.h
+                  timerange.hours_since_timestamp = timerange.h
                   delete timerange.h
 
                   // Convert day value to ISO date
