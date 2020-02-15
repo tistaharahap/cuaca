@@ -45,7 +45,7 @@ const parameterSchema = new mongoose.Schema({
   },
   timeranges: {
     type: [timerangeSchema],
-    required: true
+    required: false
   }
 })
 

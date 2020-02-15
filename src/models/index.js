@@ -11,7 +11,7 @@ const connectDb = () => {
 }
 
 const closeDbConnection = conn => {
-  return Rx.Observable.fromPromise(conn.close()).observeOn(Rx.Scheduler.asap)
+  return Rx.Observable.fromPromise(conn.disconnect()).observeOn(Rx.Scheduler.asap)
 }
 
 export { connectDb, closeDbConnection }

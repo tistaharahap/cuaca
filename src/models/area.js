@@ -11,10 +11,6 @@ const areaSchema = new mongoose.Schema({
     type: [String],
     required: true
   },
-  timestamp: {
-    type: Date,
-    required: true
-  },
   location: {
     type: pointSchema,
     required: true
@@ -27,7 +23,7 @@ const areaSchema = new mongoose.Schema({
   tags: [String],
   parameters: {
     type: [parameterSchema],
-    required: true
+    required: false
   }
 })
 
