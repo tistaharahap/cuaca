@@ -20,6 +20,10 @@ const timerangeSchema = new mongoose.Schema({
     type: [timerangeValueSchema],
     required: true
   },
+  timestamp: {
+    type: Date,
+    required: true
+  },
   day: {
     type: Date,
     required: false

@@ -1,4 +1,8 @@
+/* eslint no-param-reassign: 0 */
+/* eslint no-console: 0 */
+/* eslint prefer-destructuring: 0 */
 import Rx from 'rxjs'
+import { DateTime } from 'luxon'
 import { getAllWeatherDataJSON } from './utils'
 import { connectDb, closeDbConnection } from './models'
 import { getAreaById, createArea } from './services/areaservice'
@@ -12,7 +16,7 @@ const seedsToDb = getAllWeatherDataJSON()
       return Rx.Observable.of(data)
         .switchMap(provinces => {
           const provinceEntryJobs = provinces.map(it => {
-            const { areas } = it
+            const { timestamp, areas } = it
             return Rx.Observable.of(areas).switchMap(provinceAreas => {
               const jobs = provinceAreas.map(area => {
                 return (
@@ -52,8 +56,48 @@ const seedsToDb = getAllWeatherDataJSON()
 
                       return Rx.Observable.of(areaFromDb)
                     })
+
+                    // Insert Timeranges
+                    .switchMap(areaFromDb => {
+                      console.log(`Updating data for ${area.names.en_US}`)
+
+                      const parameters = area.parameters
+                      if (!Array.isArray(parameters) || parameters.length === 0) {
+                        return Rx.Observable.of(areaFromDb)
+                      }
+
+                      areaFromDb.parameters = area.parameters.map(item => {
+                        const timeranges = item.timeranges.map(tm => {
+                          return {
+                            type: tm.type,
+                            values: tm.values.map(val => {
+                              return {
+                                value: val.value,
+                                valueUnit: val.value_unit
+                              }
+                            }),
+                            timestamp: DateTime.fromISO(timestamp).toJSDate(),
+                            day:
+                              tm.day !== undefined
+                                ? DateTime.fromISO(tm.day).toJSDate()
+                                : undefined,
+                            hoursSinceTimestamp:
+                              tm.hours_since_timestamp !== undefined
+                                ? tm.hours_since_timestamp
+                                : undefined
+                          }
+                        })
+                        return {
+                          id: item.id,
+                          description: item.description,
+                          type: item.type,
+                          timeranges
+                        }
+                      })
+
+                      return Rx.Observable.fromPromise(areaFromDb.save())
+                    })
                 )
-                // Create Parameters
               })
               return Rx.Observable.zip(...jobs)
             })
