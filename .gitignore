@@ -92,3 +92,4 @@ typings/
 dist
 
 package-lock.json
+weatherdata/*.json
