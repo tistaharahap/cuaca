@@ -14,5 +14,26 @@
     "forecast"
   ],
   "author": "Batista Harahap",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "nodemon": "^2.0.0",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "core-js": "^2.6.10",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-router-rx": "^0.4.0",
+    "rxjs": "^5.5.11"
+  }
 }
