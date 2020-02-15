@@ -1,4 +1,5 @@
 /* eslint no-param-reassign: 0 */
+/* eslint no-console: 0 */
 import Rx from 'rxjs'
 import fxp from 'fast-xml-parser'
 import { DateTime } from 'luxon'
