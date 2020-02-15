@@ -4,7 +4,7 @@ Aims to be a simple API for weather prediction in Indonesia. Data taken from [Ba
 
 ## JSON Datasets
 
-Converted and cleaned up JSON datasets is available as a standalone HTTP server. As with BMKG's original data, the datasets are predictions for the next 3 days.
+Converted and cleaned up JSON datasets is available as a standalone HTTP server. As with BMKG's original data, the datasets are predictions for the next 3 days. Or after seeding, you can just go to the `weatherdata` folder.
 
 ### Running Locally
 
