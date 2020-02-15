@@ -1,5 +1,8 @@
 import fs from 'fs'
+import path from 'path'
 import Rx from 'rxjs'
+import readdir from 'fs-readdir-promise'
+import readfile from 'fs-readfile-promise'
 import { DateTime } from 'luxon'
 import axios from 'axios'
 
@@ -40,4 +43,22 @@ const bmkgDateToISODate = bmkgDate => {
   }).toString()
 }
 
-export { httpDownloader, writeToFile, bmkgDatetimeToISODatetime, bmkgDateToISODate }
+const getAllWeatherDataJSON = () => {
+  const weatherdataPath = path.join(__dirname, '../weatherdata')
+  const promise = readdir(weatherdataPath).then(files => {
+    return files.filter(file => file.endsWith('.json')).map(file => `${weatherdataPath}/${file}`)
+  })
+
+  return Rx.Observable.fromPromise(promise).switchMap(files => {
+    const promises = files.map(file => readfile(file, 'utf8'))
+    return Rx.Observable.zip(...promises).map(it => it.map(file => JSON.parse(file)))
+  })
+}
+
+export {
+  httpDownloader,
+  writeToFile,
+  bmkgDatetimeToISODatetime,
+  bmkgDateToISODate,
+  getAllWeatherDataJSON
+}

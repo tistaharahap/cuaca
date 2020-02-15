@@ -10,7 +10,8 @@
     "build": "npm run lint && babel src --out-dir dist",
     "serve": "node dist/app.js",
     "seeder": "babel-node src/seeder.js",
-    "weather-repo": "npm run seeder && cd weatherdata && serve ."
+    "weather-repo": "npm run seeder && cd weatherdata && serve .",
+    "seeds-to-db": "babel-node src/seeds-to-db.js"
   },
   "keywords": [
     "cuaca",
@@ -40,6 +41,8 @@
     "axios": "^0.19.2",
     "core-js": "^2.6.11",
     "fast-xml-parser": "^3.16.0",
+    "fs-readdir-promise": "^1.0.1",
+    "fs-readfile-promise": "^3.0.1",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-router-rx": "^0.4.0",
