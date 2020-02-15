@@ -92,3 +92,5 @@ typings/
 dist
 
 env
+weatherdata/*.json
+
