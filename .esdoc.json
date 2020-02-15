@@ -7,9 +7,9 @@
         "lint": {"enable": false},
         "coverage": {"enable": false},
         "brand": {
-          "title": "Cloudflare DDNS",
-          "description": "Use Cloudflare's DNS API as your DDNS",
-          "repository": "https://github.com/tistaharahap/cloudflare-ddns",
+          "title": "Cuaca",
+          "description": "Perkiraan cuaca menggunakan data BMKG yang fokus terhadap kemudahan penggunaan",
+          "repository": "https://github.com/tistaharahap/cuaca",
           "author": "https://twitter.com/tista"
         }
       }
