@@ -20,3 +20,22 @@ Open up a browser and go to `http://localhost:5000` to see the data. This will o
 ```shell
 $ npm run seeder
 ```
+
+## Seeding
+
+To seed MongoDB, do the following sequence.
+
+```shell
+$ npm run seeder # Will download new feed from BMKG
+$ npm run seeds-to-db # Insert the updates into MongoDB
+```
+
+Make sure your have a MongoDB instance running and its connection string set properly in the environment.
+
+## Environment Variables
+
+| Name                 | Description               | Default Value     |
+|----------------------|---------------------------|-------------------|
+| HOST                 | Serving host              | 0.0.0.0           |
+| PORT                 | Serving port              | 3000              |
+| MONGO_DB_CONN_STRING | MongoDB connection string | Empty             |
