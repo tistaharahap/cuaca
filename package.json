@@ -4,7 +4,11 @@
   "description": "Perkiraan cuaca menggunakan data BMKG yang fokus terhadap kemudahan penggunaan",
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --color .",
+    "start": "nodemon --exec babel-node src/app.js",
+    "build": "npm run lint && babel src --out-dir dist",
+    "serve": "node dist/app.js"
   },
   "keywords": [
     "cuaca",
