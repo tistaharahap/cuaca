@@ -12,7 +12,7 @@ const seeder = Rx.Observable.of(weatherSource).switchMap(it => {
   // Download the source
   return (
     Rx.Observable.zip(...downloadJobs)
-      // Parse XLM to JSON
+      // Parse XML to JSON
       .map(xmls =>
         xmls.map(item => {
           const opts = {
