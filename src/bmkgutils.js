@@ -52,4 +52,22 @@ const windCodeToHumanReadableWindDirection = code => {
   return windDictionary[code]
 }
 
-export { weatherCodeToHumanReadableWeather, windCodeToHumanReadableWindDirection }
+const transformWeatherTimerange = wtr => {
+  return {
+    type: wtr.type,
+    timestamp: wtr.timestamp,
+    hoursSinceTimestamp: wtr.hoursSinceTimestamp,
+    values: wtr.values.map(it => {
+      return {
+        valueUnit: it.valueUnit,
+        value: weatherCodeToHumanReadableWeather(it.value)
+      }
+    })
+  }
+}
+
+export {
+  weatherCodeToHumanReadableWeather,
+  windCodeToHumanReadableWindDirection,
+  transformWeatherTimerange
+}

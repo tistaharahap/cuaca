@@ -39,3 +39,17 @@ Make sure your have a MongoDB instance running and its connection string set pro
 | HOST                 | Serving host              | 0.0.0.0           |
 | PORT                 | Serving port              | 3000              |
 | MONGO_DB_CONN_STRING | MongoDB connection string | Empty             |
+
+## Endpoints
+
+This sections lists all available endpoints.
+
+### Nearby Weather
+
+```
+[GET] /v1/nearby
+
+Query Parameters:
+* latitude: float
+* longitude: float
+```

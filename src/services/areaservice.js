@@ -12,4 +12,23 @@ const createArea = opts => {
   return Rx.Observable.fromPromise(promise).observeOn(Rx.Scheduler.asap)
 }
 
-export { getAreaById, createArea }
+const getNearbyWeather = (latitude, longitude, maxDistance = 15000, minDistance = 5000) => {
+  const query = {
+    location: {
+      $near: {
+        $geometry: {
+          type: 'Point',
+          coordinates: [longitude, latitude]
+        },
+        $maxDistance: maxDistance,
+        $minDistance: minDistance
+      }
+    }
+  }
+  const queryPromise = Area.findOne(query)
+    .select('-_id')
+    .select('-__v')
+  return Rx.Observable.fromPromise(queryPromise).observeOn(Rx.Scheduler.asap)
+}
+
+export { getAreaById, createArea, getNearbyWeather }
