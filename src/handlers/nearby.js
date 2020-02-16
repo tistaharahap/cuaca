@@ -25,13 +25,13 @@ const nearbyHandler = obs => {
           const minHumidity = parameters.find(item => item.id === 'humin')
             ? parameters.find(item => item.id === 'humin').timeranges
             : []
-          const temprature = parameters.find(item => item.id === 't')
+          const temperature = parameters.find(item => item.id === 't')
             ? parameters.find(item => item.id === 't').timeranges
             : []
-          const maxTemprature = parameters.find(item => item.id === 'tmax')
+          const maxTemperature = parameters.find(item => item.id === 'tmax')
             ? parameters.find(item => item.id === 'tmax').timeranges
             : []
-          const minTemprature = parameters.find(item => item.id === 'tmin')
+          const minTemperature = parameters.find(item => item.id === 'tmin')
             ? parameters.find(item => item.id === 'tmin').timeranges
             : []
           const weather = (parameters.find(item => item.id === 'weather')
@@ -51,9 +51,9 @@ const nearbyHandler = obs => {
               humidity,
               maxHumidity,
               minHumidity,
-              temprature,
-              maxTemprature,
-              minTemprature,
+              temperature,
+              maxTemperature,
+              minTemperature,
               weather
             }
           }
