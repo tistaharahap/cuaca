@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --color .",
-    "start": "nodemon --exec babel-node src/app.js",
+    "dev": "nodemon --exec babel-node src/app.js",
+    "start": "node dist/app.js",
     "build": "npm run lint && babel src --out-dir dist",
     "serve": "node dist/app.js",
     "seeder": "babel-node src/seeder.js",
