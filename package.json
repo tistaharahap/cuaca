@@ -8,11 +8,12 @@
     "lint": "eslint --color .",
     "dev": "nodemon --exec babel-node src/app.js",
     "start": "node dist/app.js",
-    "build": "npm run lint && babel src --out-dir dist",
+    "build": "rm -rf dist && npm run lint && babel src --out-dir dist",
     "serve": "node dist/app.js",
     "seeder": "babel-node src/seeder.js",
     "weather-repo": "npm run seeder && cd weatherdata && serve .",
-    "seeds-to-db": "babel-node src/seeds-to-db.js"
+    "seeds-to-db": "babel-node src/seeds-to-db.js",
+    "update-db": "npm run seeder && npm run seeds-to-db"
   },
   "keywords": [
     "cuaca",

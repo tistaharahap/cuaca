@@ -57,8 +57,8 @@ const getAllWeatherDataJSON = () => {
 
 const getWebsiteIndex = () => {
   const indexPath = path.join(__dirname, './static/index.html')
-  const promise = readfile(indexPath, 'utf8')
-  return Rx.Observable.fromPromise(promise).observeOn(Rx.Scheduler.asap)
+  const file = fs.readFileSync(indexPath)
+  return file
 }
 
 export {
