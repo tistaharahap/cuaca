@@ -34,6 +34,16 @@ $ npm run seeds-to-db # Insert the updates into MongoDB
 
 Make sure your have a MongoDB instance running and its connection string set properly in the environment.
 
+### Updating Data
+
+To update the data, simply run:
+
+```shell
+$ npm run update-db
+```
+
+Cron this script to run it periodically.
+
 ## Environment Variables
 
 | Name                 | Description               | Default Value     |
