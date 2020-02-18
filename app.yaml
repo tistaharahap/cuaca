@@ -1,3 +1,4 @@
 runtime: nodejs10
 env: standard
-
+env_variables:
+    MONGO_DB_CONN_STRING: mongodb+srv://bango:uNrSeRwEbU3Esyk@cuaca-public-wdl9a.gcp.mongodb.net/test?retryWrites=true&w=majority
