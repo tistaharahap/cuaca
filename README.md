@@ -52,6 +52,14 @@ This sections lists all available endpoints.
 [GET] /v1/nearby
 
 Query Parameters:
-* latitude: float
-* longitude: float
+* latitude: float [required]
+* longitude: float [required]
+* minDistance: integer [optional, defaults to 0]
+* maxDistance: integer [optional, defaults to 100000]
+```
+
+### All Areas Weather
+
+```
+[GET] /v1/areas
 ```
