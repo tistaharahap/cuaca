@@ -103,6 +103,7 @@ const seedsToDb = getAllWeatherDataJSON()
 
                           humidity.push(
                             new Humidity({
+                              areaId: areaFromDb.areaId,
                               timeStart,
                               timeEnd,
                               value
@@ -127,6 +128,7 @@ const seedsToDb = getAllWeatherDataJSON()
 
                           humidityMinimums.push(
                             new MinimumHumidity({
+                              areaId: areaFromDb.areaId,
                               timeStart,
                               timeEnd,
                               value
@@ -151,6 +153,7 @@ const seedsToDb = getAllWeatherDataJSON()
 
                           humidityMaxes.push(
                             new MaximumHumidity({
+                              areaId: areaFromDb.areaId,
                               timeStart,
                               timeEnd,
                               value
@@ -179,6 +182,7 @@ const seedsToDb = getAllWeatherDataJSON()
 
                           temperature.push(
                             new Temperature({
+                              areaId: areaFromDb.areaId,
                               timeStart,
                               timeEnd,
                               value
@@ -203,6 +207,7 @@ const seedsToDb = getAllWeatherDataJSON()
 
                           temperatureMinimums.push(
                             new MinimumTemperature({
+                              areaId: areaFromDb.areaId,
                               timeStart,
                               timeEnd,
                               value
@@ -227,6 +232,7 @@ const seedsToDb = getAllWeatherDataJSON()
 
                           temperatureMaxes.push(
                             new MaximumTemperature({
+                              areaId: areaFromDb.areaId,
                               timeStart,
                               timeEnd,
                               value
@@ -256,6 +262,7 @@ const seedsToDb = getAllWeatherDataJSON()
 
                           weather.push(
                             new Weather({
+                              areaId: areaFromDb.areaId,
                               timeStart,
                               timeEnd,
                               value,
@@ -286,6 +293,7 @@ const seedsToDb = getAllWeatherDataJSON()
 
                           windDirections.push(
                             new WindDirection({
+                              areaId: areaFromDb.areaId,
                               timeStart,
                               timeEnd,
                               value,
@@ -315,6 +323,7 @@ const seedsToDb = getAllWeatherDataJSON()
 
                           windSpeeds.push(
                             new WindSpeed({
+                              areaId: areaFromDb.areaId,
                               timeStart,
                               timeEnd,
                               value

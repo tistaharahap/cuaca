@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
 const stringWeatherSchema = new mongoose.Schema({
+  areaId: {
+    type: String,
+    required: true
+  },
   timeStart: {
     type: Date,
     required: true
