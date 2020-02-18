@@ -61,11 +61,18 @@ const getWebsiteIndex = () => {
   return file
 }
 
+const getStaticFile = fn => {
+  const filePath = path.join(__dirname, `./static/${fn}`)
+  const file = fs.readFileSync(filePath)
+  return file
+}
+
 export {
   httpDownloader,
   writeToFile,
   bmkgDatetimeToISODatetime,
   bmkgDateToISODate,
   getAllWeatherDataJSON,
-  getWebsiteIndex
+  getWebsiteIndex,
+  getStaticFile
 }

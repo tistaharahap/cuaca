@@ -1,6 +1,6 @@
 {
   "name": "cuaca",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Aims to be a simple API for weather prediction in Indonesia",
   "main": "src/app.js",
   "scripts": {
@@ -52,6 +52,7 @@
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-router-rx": "^0.4.0",
+    "koa-static": "^5.0.0",
     "luxon": "^1.22.0",
     "mongoose": "^5.9.1",
     "rxjs": "^5.5.11",
