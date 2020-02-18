@@ -61,8 +61,8 @@
             const { nearestPoint } = res.data.data
             const { name, humidity, temperature } = nearestPoint
 
-            const currentTemp = temperature[0].values[0].value
-            const currentHumidity = humidity[0].values[0].value
+            const currentTemp = temperature.value
+            const currentHumidity = humidity.value * 100
 
             const message = `<h2>${currentTemp}&deg; C</h2><small>Kelembapan ${currentHumidity}%</small>`
             marker.bindPopup(message).openPopup()

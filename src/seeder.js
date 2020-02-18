@@ -27,7 +27,13 @@ const seeder = Rx.Observable.of(weatherSource).switchMap(it => {
       .map(xmls => {
         return xmls.map(item => {
           const { year, month, day, hour, minute, second } = item.issue
-          const timestamp = DateTime.fromJSDate(new Date(year, month, day, hour, minute, second), {
+          const timestamp = DateTime.fromObject({
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second,
             zone: 'UTC'
           }).toISO()
 
