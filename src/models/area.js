@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 import pointSchema from './point'
-import { parameterSchema } from './parameter'
 
 const areaSchema = new mongoose.Schema({
   areaId: {
@@ -20,11 +19,7 @@ const areaSchema = new mongoose.Schema({
   level: Number,
   description: String,
   domain: String,
-  tags: [String],
-  parameters: {
-    type: [parameterSchema],
-    required: false
-  }
+  tags: [String]
 })
 
 const Area = mongoose.model('Area', areaSchema)

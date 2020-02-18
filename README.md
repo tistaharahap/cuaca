@@ -1,5 +1,7 @@
 # Cuaca
 
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+
 Aims to be a simple API for weather prediction in Indonesia. Data taken from [Badan Meteorologi Klimatologi dan Geofisika](https://www.bmkg.go.id/) publicly available XML datasets [here](http://data.bmkg.go.id/).
 
 ## JSON Datasets
