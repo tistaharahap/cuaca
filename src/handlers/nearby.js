@@ -38,7 +38,7 @@ const nearbyHandler = obs => {
 
           return {
             nearestPoint: {
-              coordinates: {
+              location: {
                 latitude: location.coordinates[1],
                 longitude: location.coordinates[0]
               },

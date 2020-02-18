@@ -93,15 +93,99 @@ const getWeatherForArea = area => {
 }
 
 const getWeatherForAllAreas = () => {
-  const promise = Area.find({})
-    .select('-_id')
-    .select('-__v')
-  return Rx.Observable.fromPromise(promise)
-    .observeOn(Rx.Scheduler.asap)
-    .switchMap(areas => {
-      const promises = areas.map(getWeatherForArea)
-      return Rx.Observable.zip(...promises)
+  const attrCollections = [
+    'humidities',
+    'minimumhumidities',
+    'maximumhumidities',
+    'temperatures',
+    'minimumtemperatures',
+    'maximumtemperatures',
+    'weathers',
+    'winddirections',
+    'windspeeds'
+  ]
+  const generateAttrLookupPipeline = (collection, ts) => {
+    return {
+      $lookup: {
+        from: collection,
+        let: {
+          areaId: '$areaId'
+        },
+        pipeline: [
+          {
+            $match: {
+              $expr: {
+                $and: [
+                  { $eq: ['$areaId', '$$areaId'] },
+                  { $lt: ['$timeStart', ts] },
+                  { $gt: ['$timeEnd', ts] }
+                ]
+              }
+            }
+          },
+          {
+            $project: {
+              _id: 0,
+              __v: 0,
+              areaId: 0
+            }
+          }
+        ],
+        as: collection
+      }
+    }
+  }
+  const additionalPipelines = [
+    {
+      $project: {
+        _id: 0,
+        __v: 0,
+        'location.type': 0
+      }
+    },
+    {
+      $addFields: {
+        'location.latitude': {
+          $arrayElemAt: ['$location.coordinates', 1]
+        },
+        'location.longitude': {
+          $arrayElemAt: ['$location.coordinates', 0]
+        }
+      }
+    },
+    {
+      $project: {
+        'location.coordinates': 0
+      }
+    }
+  ]
+
+  const now = DateTime.utc().toJSDate()
+  const pipelines = attrCollections
+    .map(coll => generateAttrLookupPipeline(coll, now))
+    .concat(additionalPipelines)
+
+  const promise = Area.aggregate(pipelines)
+
+  return Rx.Observable.fromPromise(promise).map(areas => {
+    return areas.map(area => {
+      return {
+        name: area.description,
+        location: area.location,
+        type: area.type,
+        humidity: area.humidities.length > 0 ? area.humidities[0] : null,
+        temperature: area.temperatures.length > 0 ? area.temperatures[0] : null,
+        weather: area.weathers.length > 0 ? area.weathers[0] : null,
+        windSpeed: area.windspeeds.length > 0 ? area.windspeeds[0] : null,
+        windDirection: area.winddirections.length > 0 ? area.winddirections[0] : null,
+        minimumHumidity: area.minimumhumidities.length > 0 ? area.minimumhumidities[0] : null,
+        maximumHumidity: area.maximumhumidities.length > 0 ? area.maximumhumidities[0] : null,
+        minimumTemperature:
+          area.minimumtemperatures.length > 0 ? area.minimumtemperatures[0] : null,
+        maximumTemperature: area.maximumtemperatures.length > 0 ? area.maximumtemperatures[0] : null
+      }
     })
+  })
 }
 
 const getNearbyWeather = (latitude, longitude, maxDistance = 100000, minDistance = 0) => {
