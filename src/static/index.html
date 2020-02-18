@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta charset="UTF-8">
     <title>Cuaca Indonesia</title>
     <link
       rel="stylesheet"
@@ -54,18 +55,36 @@
           map.setView(myPosition, 12)
           
           marker.bindPopup('Sedang mengukur suhu, sekejap..').openPopup()
+
+          // My Coordinates
           axios.get(`/v1/nearby?latitude=${myPosition[0]}&longitude=${myPosition[1]}`).then(res => {
             if (!res.data.data) {
               return
             }
             const { nearestPoint } = res.data.data
-            const { name, humidity, temperature } = nearestPoint
+            const { name, weather, temperature } = nearestPoint
 
             const currentTemp = temperature.value
-            const currentHumidity = humidity.value * 100
+            const currentWeather = weather.value
 
-            const message = `<h2>${currentTemp}&deg; C</h2><small>Kelembapan ${currentHumidity}%</small>`
+            const message = `<b>Lokasi Saya Sekarang</b><h3>${currentTemp}&deg;C</h3><h4>${currentWeather}</h4>`
             marker.bindPopup(message).openPopup()
+          })
+
+          // All Areas
+          axios.get('/v1/areas').then(res => {
+            if (!res.data.data) {
+              return
+            }
+            res.data.data.forEach(area => {
+              const marker = L.marker([area.location.latitude, area.location.longitude], {
+                riseOnHover: true,
+              }).addTo(map)
+              const temperature = area.temperature ? area.temperature.value : 'Tidak Tercakup'
+              const weather = area.weather ? area.weather.value : 'Tidak Tercakup'
+              const message = `<b>${area.name}</b><h3>${temperature}&deg;C</h3><h4>${weather}</h4>`
+              marker.bindPopup(message)
+            })
           })
         },
         err => {}
