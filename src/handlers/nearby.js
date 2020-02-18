@@ -6,10 +6,18 @@ import { connectDb } from '../models'
 const nearbyHandler = obs => {
   return connectDb().switchMap(() => {
     return obs.switchMap(ctx => {
-      const { latitude, longitude } = ctx.request.query
-      return getNearbyWeather(latitude, longitude)
+      const { latitude, longitude, minDistance, maxDistance } = ctx.request.query
+      return getNearbyWeather(
+        latitude,
+        longitude,
+        maxDistance ? parseInt(maxDistance, 10) : undefined,
+        minDistance ? parseInt(minDistance, 10) : undefined
+      )
         .map(result => {
           const { area } = result
+          if (!area) {
+            return jsend.success({})
+          }
           const {
             humidity,
             temperature,
