@@ -1,6 +1,6 @@
 {
   "name": "cuaca",
-  "version": "0.5.1",
+  "version": "0.5.3",
   "description": "Aims to be a simple API for weather prediction in Indonesia",
   "main": "src/app.js",
   "scripts": {
