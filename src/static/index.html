@@ -56,6 +56,22 @@
         }
       ).addTo(map)
 
+      // All Areas
+      axios.get('/v1/areas').then(res => {
+        if (!res.data.data) {
+          return
+        }
+        res.data.data.forEach(area => {
+          const marker = L.marker([area.location.latitude, area.location.longitude], {
+            riseOnHover: true,
+          }).addTo(map)
+          const temperature = area.temperature ? area.temperature.value : 'Tidak Tercakup'
+          const weather = area.weather ? area.weather.value : 'Tidak Tercakup'
+          const message = `<b>${area.name}</b><h3>${temperature}&deg;C</h3><h4>${weather}</h4>`
+          marker.bindPopup(message)
+        })
+      })
+
       navigator.geolocation.getCurrentPosition(
         position => {
           const myPosition = [position.coords.latitude, position.coords.longitude]
@@ -77,22 +93,6 @@
 
             const message = `<b>Lokasi Saya Sekarang</b><h3>${currentTemp}&deg;C</h3><h4>${currentWeather}</h4>`
             marker.bindPopup(message).openPopup()
-          })
-
-          // All Areas
-          axios.get('/v1/areas').then(res => {
-            if (!res.data.data) {
-              return
-            }
-            res.data.data.forEach(area => {
-              const marker = L.marker([area.location.latitude, area.location.longitude], {
-                riseOnHover: true,
-              }).addTo(map)
-              const temperature = area.temperature ? area.temperature.value : 'Tidak Tercakup'
-              const weather = area.weather ? area.weather.value : 'Tidak Tercakup'
-              const message = `<b>${area.name}</b><h3>${temperature}&deg;C</h3><h4>${weather}</h4>`
-              marker.bindPopup(message)
-            })
           })
         },
         err => {}
