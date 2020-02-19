@@ -234,7 +234,7 @@
       tmax: maximumTemperature.value,
       tmin: minimumTemperature.value,
       humax: maximumHumidity.value,
-      humin: maximumHumidity.value
+      humin: minimumHumidity.value
     })
     marker.bindPopup(html)
   }, err => {
