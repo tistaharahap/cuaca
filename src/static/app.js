@@ -2,6 +2,8 @@
 import subscribeToMapClicks from '/js/mapclicks.js'
 import showAllAreas from '/js/allareas.js'
 import myLocation from '/js/mylocation.js'
+import { lowestTemp } from '/js/templowest.js'
+import { highestTemp } from '/js/temphighest.js'
 
 ;(() => {
   const jakartaCoordinates = [-6.21462, 106.84513]
@@ -9,7 +11,10 @@ import myLocation from '/js/mylocation.js'
   const mapElId = 'mapid'
 
   // New Map - Center to Jakarta
-  const map = L.map(mapElId).setView(jakartaCoordinates, defaultZoomLevel)
+  const map = L.map(mapElId, {
+    zoomControl: false,
+    detectRetina: true,
+  }).setView(jakartaCoordinates, defaultZoomLevel)
 
   // Leaflet Init
   L.tileLayer(
@@ -26,8 +31,15 @@ import myLocation from '/js/mylocation.js'
     }
   ).addTo(map)
 
+  // Zoom Control
+  L.control.zoom({
+      position: 'topright'
+  }).addTo(map)
+
   // Features
   subscribeToMapClicks(map)
   showAllAreas(map)
   myLocation(map)
+  lowestTemp(map)
+  highestTemp(map)
 })()

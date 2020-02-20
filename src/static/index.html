@@ -40,15 +40,50 @@
         height: 100%;
         width: 100%;
         position: absolute !important;
+        top: 0;
       }
       .leaflet-popup-content-wrapper, .leaflet-popup-tip {
         background: none;
         box-shadow: none;
       }
+      div#nav {
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 5000;
+        background: #237CC8;
+      }
+      div#nav .mdl-layout__header, div#nav .mdl-layout__drawer-button {
+        color: #f0f0f0;
+      }
     </style>
   </head>
   <body>
-    <div id="mapid"></div>
+    <div id="nav" class="mdl-layout mdl-js-layout">
+      <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Cuaca Indonesia</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="http://data.bmkg.go.id" target="_blank">BMKG Data</a>
+            <a class="mdl-navigation__link" href="https://github.com/tistaharahap/cuaca" target="_blank">Github Repo</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Cuaca Indonesia</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="#" id="lowest-temp">Suhu paling rendah</a>
+          <a class="mdl-navigation__link" href="#" id="highest-temp">Suhu paling tinggi</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div id="mapid"></div>
+      </main>
+    </div>
     <script type="text/template" id="weather-card-template">
       <style>
         .demo-card-square.mdl-card {
