@@ -44,7 +44,7 @@
     "axios": "^0.21.1",
     "core-js": "^2.6.11",
     "decimal.js": "^10.2.0",
-    "fast-xml-parser": "^3.16.0",
+    "fast-xml-parser": "^4.2.4",
     "fs-readdir-promise": "^1.0.1",
     "fs-readfile-promise": "^3.0.1",
     "geodist": "^0.2.1",
